@@ -11,9 +11,7 @@
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4",
     "express": "^4.18.2",
-    "compression": "^1.7.4",
-    "helmet": "^7.1.0",
-    "cors": "^2.8.5"
+    "compression": "^1.7.4"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -21,11 +19,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "serve": "node server.js",
-    "start:prod": "NODE_ENV=production node server.js",
-    "docker:build": "docker build -t my-react-app .",
-    "docker:run": "docker run -p 3000:3000 my-react-app",
-    "docker:dev": "docker build -t my-react-app . && docker run -p 3000:3000 my-react-app",
-    "health": "curl -f http://localhost:3000/health || exit 1"
+    "postbuild": "echo 'Build completed successfully'"
   },
   "eslintConfig": {
     "extends": [
@@ -45,12 +39,6 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {
-    "@types/compression": "^1.7.5",
-    "@types/cors": "^2.8.17",
-    "@types/express": "^4.17.21",
-    "nodemon": "^3.0.2"
-  },
   "engines": {
     "node": ">=16.0.0",
     "npm": ">=8.0.0"
@@ -58,19 +46,10 @@
   "keywords": [
     "react",
     "create-react-app",
-    "express",
-    "docker",
     "coolify"
   ],
   "author": "Your Name",
   "license": "MIT",
-  "description": "A Create React App with Express server for production deployment",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/yourusername/my-react-app.git"
-  },
-  "bugs": {
-    "url": "https://github.com/yourusername/my-react-app/issues"
-  },
+  "description": "A Create React App deployed with Coolify buildpack",
   "homepage": "."
 }
