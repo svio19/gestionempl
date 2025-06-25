@@ -1,0 +1,28 @@
+{
+  "name": "react-app",
+  "type": "nodejs",
+  "buildPack": "nodejs",
+  "dockerfilePath": "./Dockerfile",
+  "deploymentType": "docker",
+  "port": 3000,
+  "healthCheckPath": "/health",
+  "healthCheckMethod": "GET",
+  "healthCheckTimeout": 10000,
+  "healthCheckInterval": 30000,
+  "startPeriod": 10000,
+  "env": {
+    "NODE_ENV": "production",
+    "REACT_APP_API_URL": "${API_URL}",
+    "PORT": "3000"
+  },
+  "build": {
+    "buildCommand": "npm run build",
+    "installCommand": "npm ci",
+    "nodeVersion": "18"
+  },
+  "staticFiles": {
+    "enabled": false
+  },
+  "domains": [],
+  "secrets": []
+}
