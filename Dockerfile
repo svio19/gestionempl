@@ -1,6 +1,7 @@
-# Multi-stage build optimized for Coolify
+# Multi-stage build for production
 FROM node:18-alpine as build
 
+# Set working directory
 WORKDIR /app
 
 # Copy package files
@@ -12,30 +13,20 @@ RUN npm ci --only=production
 # Copy source code
 COPY . .
 
-# Build the React app
+# Build the app
 RUN npm run build
 
-# Production stage with Nginx
+# Production stage
 FROM nginx:alpine
 
-# Install curl for health checks
-RUN apk add --no-cache curl
-
-# Copy built assets
+# Copy built assets from build stage
 COPY --from=build /app/build /usr/share/nginx/html
 
-# Copy nginx configuration
+# Copy custom nginx config (optional)
 COPY nginx.conf /etc/nginx/nginx.conf
 
-# Create health check endpoint
-RUN echo "healthy" > /usr/share/nginx/html/health
-
-# Expose port 80 (important for Coolify)
+# Expose port 80
 EXPOSE 80
-
-# Health check for Coolify
-HEALTHCHECK --interval=30s --timeout=3s --start-period=10s --retries=3 \
-  CMD curl -f http://localhost:80/health || exit 1
 
 # Start nginx
 CMD ["nginx", "-g", "daemon off;"]
