@@ -2,8 +2,7 @@
   "name": "react-app",
   "type": "nodejs",
   "buildPack": "nodejs",
-  "dockerfilePath": "./Dockerfile",
-  "deploymentType": "docker",
+  "deploymentType": "buildpack",
   "port": 3000,
   "healthCheckPath": "/health",
   "healthCheckMethod": "GET",
@@ -17,7 +16,8 @@
   },
   "build": {
     "buildCommand": "npm run build",
-    "installCommand": "npm ci",
+    "installCommand": "npm install",
+    "startCommand": "npm run serve",
     "nodeVersion": "18"
   },
   "staticFiles": {
