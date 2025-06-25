@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  react-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
+    container_name: my-react-app
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+    networks:
+      - react-network
+
+networks:
+  react-network:
+    driver: bridge
